@@ -31,13 +31,13 @@ namespace collision {
     template<typename T>
     bool ray_aabb(vector::vec2<T> r_pos, vector::vec2<T> r_dir, rect2<T> target, float &collision_time, vector::vec2<T> &normal_dir) {
         vector::vec2<T> entry_time = {
-            target.pos.x - r_pos.x / r_dir.x,
-            target.pos.y - r_pos.y / r_dir.y,
+            (target.pos.x - r_pos.x) / r_dir.x,
+            (target.pos.y - r_pos.y) / r_dir.y,
         };
 
         vector::vec2<T> exit_time = {
-            target.pos.x + target.size.x - r_pos.x / r_dir.x,
-            target.pos.y + target.size.y - r_pos.y / r_dir.y,
+            (target.pos.x + target.size.x - r_pos.x) / r_dir.x,
+            (target.pos.y + target.size.y - r_pos.y) / r_dir.y,
         };
 
         if(std::isnan(exit_time.y) || std::isnan(exit_time.y)) return false;
