@@ -1,6 +1,7 @@
 #ifndef LIBCOLLISION_HPP_
 #define LIBCOLLISION_HPP_
 
+#include <algorithm>
 #include <cmath>
 #include <libvector.hpp>
 
@@ -72,7 +73,7 @@ namespace collision {
         if(a_vel.is_zero()) return false;
 
         rect2<T> b_expanded = {
-            {b.pos.x - a.size.x, b.pos.y - a.size.y},
+            {std::clamp(b.pos.x - a.size.x, 0.0f, std::numeric_limits<T>::infinity()), std::clamp(b.pos.y - a.size.y, 0.0f, std::numeric_limits<T>::infinity())},
             {b.size.x + a.size.x * 2, b.size.y + a.size.y * 2}
         };
 
