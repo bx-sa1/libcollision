@@ -73,11 +73,15 @@ namespace collision {
         if(a_vel.is_zero()) return false;
 
         rect2<T> b_expanded = {
-            {std::clamp(b.pos.x - a.size.x, 0.0f, std::numeric_limits<T>::infinity()), std::clamp(b.pos.y - a.size.y, 0.0f, std::numeric_limits<T>::infinity())},
-            {b.size.x + a.size.x * 2, b.size.y + a.size.y * 2}
+            {b.pos.x - a.size.x / 2, b.pos.y - a.size.y / 2},
+            {b.size.x + a.size.x, b.size.y + a.size.y}
         };
 
-        if(ray_aabb(a.pos, a_vel, b_expanded, collision_time, normal_dir) && collision_time <= 1.0f) {
+        vector::vec2<T> a_center_pos = {
+            a.pos.x + a.size.y / 2, a.pos.y + a.size.y / 2
+        };
+
+        if(ray_aabb(a_center_pos, a_vel, b_expanded, collision_time, normal_dir) && collision_time <= 1.0f) {
             return true;
         }
 
