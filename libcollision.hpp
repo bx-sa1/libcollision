@@ -44,9 +44,9 @@ namespace collision {
         if(std::isnan(entry_time.x) || std::isnan(entry_time.y)) return false; 
 
         if(entry_time.x > exit_time.x) std::swap(entry_time.x, exit_time.x);
-        if(entry_time.y > entry_time.y) std::swap(entry_time.y, exit_time.y);
+        if(entry_time.y > exit_time.y) std::swap(entry_time.y, exit_time.y);
 
-        if(entry_time.x > exit_time.x || entry_time.x > exit_time.x) return false;
+        if(entry_time.x > exit_time.x || entry_time.y > exit_time.y) return false;
 
         collision_time = std::max(entry_time.x, entry_time.y);
         float exit_hit_time = std::min(exit_time.x, exit_time.y);
