@@ -81,8 +81,8 @@ namespace collision {
             a.pos.x + a.size.x / 2, a.pos.y + a.size.y / 2
         };
 
-        if(ray_aabb(a_center_pos, a_vel, b_expanded, collision_time, normal_dir) && collision_time <= 1.0f) {
-            return true;
+        if(ray_aabb(a_center_pos, a_vel, b_expanded, collision_time, normal_dir)) {
+            return (collision_time >= 0.0f && collision_time <= 1.0f);
         }
 
         return false;
